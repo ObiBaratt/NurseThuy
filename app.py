@@ -9,7 +9,7 @@ from flask_gravatar import Gravatar
 from sqlalchemy.orm import relationship
 
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import date, datetime
+from datetime import datetime
 from functools import wraps
 from inputcleaner import strip_invalid_html
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
@@ -23,7 +23,7 @@ Bootstrap(app)
 gravatar = Gravatar(app, size=100, rating='g', default='retro', force_default=False, force_lower=False,
                     use_ssl=False, base_url=None)
 # CONNECT TO DB
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('PG_DB_URL', 'sqlite:///blog.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('PG_DB_URL', 'sqlite:///blog2.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
@@ -146,7 +146,7 @@ def edit_post(post_id):
         subtitle=post.subtitle,
         img_url=post.img_url,
         author=current_user,
-        body=strip_invalid_html(post.body.data)
+        body=strip_invalid_html(post.body)
     )
     if edit_form.validate_on_submit():
         post.title = edit_form.title.data
