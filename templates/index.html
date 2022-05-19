@@ -1,0 +1,119 @@
+{% include "header.html" %}
+{% block content %}
+    <header class="masthead"
+            style="background-image: url({{ url_for('static', filename='img/header-sunset.JPG') }})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>Thuy Tran, BSN</h1>
+                        <span class="subheading"><em>Sleep until hungry, eat until sleepy.</em></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class=flashes>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <body>
+
+    {#    CONFETTI EFFECT    #}
+    <div id="confettis">
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+        <div class="confetti"></div>
+    </div>
+    <div class="container" style="text-align: center">
+        <h1 style="color:white"><em>CONGRATULATIONS!</em></h1>
+        <h4 style="color:white"><em>2022'S BEST NEW NURSE</em></h4>
+        <p></p>
+    </div>
+    <div class="container" style="text-align: center">
+        <img src="static/img/main.jpg" width="900" height="900" class="img-fluid">
+
+        <p>Congratulations on graduating!</p>
+
+        <p>You are so smart and dedicated, and you've already shown you are an amazing and compassionate nurse.
+            There are people alive today because you decided to become a nurse.</p>
+
+        <p>While studying to be the best nurse you can be has been your top priority, you are always unwavering in your
+            love
+            and support for your family. We are all proud of you.</p>
+
+        <p>You earned the respect of your classmates, faculty, supervisors, mentors and co-workers.
+            Everywhere you end up working will be a better place because of you.</p>
+
+        <p>Your brilliant career awaits.</p>
+    </div>
+
+    <div class="container" style="text-align: center">
+        <div class="row">
+            <div class="col-sm">
+                <img src="static/img/1groupmo.jpg" width="300" height="300" alt="1">
+                <p></p>
+            </div>
+            <div class="col-sm">
+                <img src="static/img/2fakebaby.JPG" width="300" height="300" alt="2">
+                <p></p>
+            </div>
+            <div class="col-sm">
+                <img src="static/img/3bulkhead.jpeg" width="300" height="300" alt="3">
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <img src="static/img/4er.png" width="300" height=300" alt="4">
+                <p></p>
+            </div>
+            <div class="col-sm">
+                <img src="static/img/5fooddrink.jpg" width="300" height="300" alt="5">
+                <p></p>
+            </div>
+            <div class="col-sm">
+                <img src="static/img/6doco.jpg" width="300" height="300" alt="6">
+                <p></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm">
+                <img src="static/img/7xin.jpg" width="300" height="300" alt="7">
+                <p></p>
+            </div>
+            <div class="col-sm">
+                <img src="static/img/8classpic.JPG" width="300" height="300" alt="8">
+                <p></p>
+            </div>
+            <div class="col-sm">
+                <img src="static/img/9mtdiablo.jpeg" width="300" height="300" alt="9">
+                <p></p>
+            </div>
+        </div>
+    </div>
+    </body>
+
+    {% include "footer.html" %}
+{% endblock %}
