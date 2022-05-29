@@ -9,6 +9,7 @@ from flask_gravatar import Gravatar
 from sqlalchemy.orm import relationship
 
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.utils import secure_filename
 from datetime import datetime
 from functools import wraps
 from inputcleaner import strip_invalid_html
@@ -31,6 +32,12 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 
 
+# SETUP FILE SYSTEM
+UPLOAD_FOLDER = 'static/img/upload'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
+
 # CONFIGURE TABLES
 class User(UserMixin, db.Model):
     __tablename__ = "users"
@@ -51,7 +58,8 @@ class BlogPost(db.Model):
     subtitle = db.Column(db.String(250), nullable=False)
     date = db.Column(db.String(250), nullable=False)
     body = db.Column(db.Text, nullable=False)
-    img_url = db.Column(db.String(250), nullable=False)
+    img_url = db.Column(db.String(250), nullable=True)
+    img_upload = db.Column(db.BLOB, nullable=True)
     comments = relationship("Comment", back_populates="parent_post")
 
 
@@ -126,7 +134,7 @@ def add_new_post():
             title=form.title.data,
             subtitle=form.subtitle.data,
             body=strip_invalid_html(form.body.data),
-            img_url=form.img_url.data,
+            img_url=form.img_url.data if form.img_url.data else form.img_upload.data,
             author=current_user,
             date=datetime.now().strftime('%m-%d-%Y')
         )
