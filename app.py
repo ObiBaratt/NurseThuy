@@ -133,7 +133,7 @@ def add_new_post():
             title=form.title.data,
             subtitle=form.subtitle.data,
             body=strip_invalid_html(form.body.data),
-            img_url=form.img_url.data if form.img_url.data else form.img_upload.data,
+            img_url=form.img_url.data,
             author=current_user,
             date=datetime.now().strftime('%m-%d-%Y')
         )
